@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JSONCache</string>
+    <string name="network_error">Please connect to a WiFi network or enable your Mobile Data</string>
+    <string name="linkToObject">https://api.stackexchange.com/2.2/users?pagesize=10&amp;order=desc&amp;sort=reputation&amp;site=stackoverflow</string>
 </resources>
