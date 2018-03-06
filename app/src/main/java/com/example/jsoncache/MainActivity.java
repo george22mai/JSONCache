@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,17 +43,25 @@ public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_ITEMS_DISPLAYED = 10;
     ListView mListView;
     StackUserAdapter mStackUserAdapter;
+    public static boolean isTablet;
+    View mDetailsLayout; //for tablet layout
 
     @BindString(R.string.linkToObject) String mLinkToJsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        isTablet = DeviceInfo.isTablet(getApplicationContext());
+        if (isTablet){
+            setContentView(R.layout.activity_main_tablet);
+            mDetailsLayout = findViewById(R.id.side_details);
+        }
+        else
+            setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         mListView = findViewById(R.id.listView);
-        mStackUserAdapter = new StackUserAdapter(getApplicationContext(), R.layout.stack_user_view, mListUsers);
+        mStackUserAdapter = new StackUserAdapter(getApplicationContext(), R.layout.stack_user_view, mListUsers, mDetailsLayout);
         mListView.setAdapter(mStackUserAdapter);
 
        fillWithData();
