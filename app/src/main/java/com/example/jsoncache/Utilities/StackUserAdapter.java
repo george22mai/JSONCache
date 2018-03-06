@@ -41,7 +41,6 @@ public class StackUserAdapter extends ArrayAdapter<StackUser> {
 
         final StackUser user = mListUsers.get(position);
         Picasso.with(getContext()).load(user.getProfilePicUrl()).error(R.drawable.ic_android).into(mProfilePic);
-        Picasso.with(getContext()).setIndicatorsEnabled(true);
         mNameTextView.setText(user.getName());
 
         view.setOnClickListener(new View.OnClickListener() {
